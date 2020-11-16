@@ -4,4 +4,6 @@ export class Cliente {
   birth: string;
   fatherId: number;
   motherId: number;
+  fatherName: string;
+  motherName: string;
 }
