@@ -11,11 +11,16 @@ import {Router } from '@angular/router';
 export class FormComponent implements OnInit {
 
   public cliente: Cliente = new Cliente();
-  public titulo:string = "Crear Cliente";
+  fechaSeleccionada: boolean = false;
+  clientes: Cliente[];
+  public titulo:string = "Crear Persona";
   constructor(private clienteService: ClienteService,
   private router: Router) { }
 
   ngOnInit(): void {
+    this.clienteService.getClientes().subscribe(
+      clientes => this.clientes = clientes
+    )
   }
 
   public create(): void {

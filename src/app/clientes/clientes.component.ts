@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @Component({
@@ -14,15 +15,30 @@ clientes: Cliente[];
 
   public temporalFather:any;
   public temporalMother:any;
+  seleccionPadre: string = 'Asociar Padre';
+  seleccionMadre: string = 'asociar Madre';
   constructor(private clientesService: ClienteService) { }
 
   ngOnInit(): void {
+    this.getPersons();
+
+  }
+
+  getPersons():void {
     this.clientesService.getClientes().subscribe(
       clientes => this.clientes = clientes,
       err => err,
       () => this.updateParents()
     );
+  }
 
+  adopt(cliente: Cliente):void {
+    this.clientesService.adopt(cliente).subscribe(
+      () => '',
+      err => err,
+      () => this.getPersons()
+
+    );
   }
 
   updateParents():void {
@@ -47,6 +63,27 @@ clientes: Cliente[];
     })
     return nombre?nombre.fullname:'sin padres registrados';
   }
+
+  ValidarAdopcion(cliente: Cliente, adoptar: Cliente, isFather:boolean) {
+
+    if( cliente.id !== adoptar.id &&
+    cliente.id !== adoptar.fatherId &&
+    cliente.id !== adoptar.motherId) {
+      if(isFather) {
+        this.clientes[this.clientes.indexOf(cliente)].fatherId = adoptar.id;
+      }
+      if(!isFather) {
+        this.clientes[this.clientes.indexOf(cliente)].motherId = adoptar.id;
+      }
+      this.adopt(this.clientes[this.clientes.indexOf(cliente)]);
+
+    }
+
+
+
+  }
+
+
 
 
 }

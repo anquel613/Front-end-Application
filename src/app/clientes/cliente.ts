@@ -2,8 +2,8 @@ export class Cliente {
   id: number;
   fullname: string;
   birth: string;
-  fatherId: number;
-  motherId: number;
+  fatherId: number = 0;
+  motherId: number = 0;
   fatherName: string;
   motherName: string;
 }

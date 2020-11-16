@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './clientes/form.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 const routes: Routes = [
@@ -35,7 +37,9 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    DropdownModule
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent]

@@ -23,18 +23,24 @@
             <td>{{cliente.id}}</td>
             <td>{{cliente.fullname}}</td>
             <td>{{cliente.birth}}</td>
-            <td>{{cliente.fatherName}}</td>
-            <td>{{cliente.motherName}}</td>
             <td class="overflow-hidden">
-       <div ngbDropdown container="body" >
-         <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Adopt</button>
-         <div ngbDropdownMenu >
-           <button ngbDropdownItem *ngFor="let adoptar of clientes">{{adoptar.fullname}}</button>
-         </div>
-       </div>
-
-     </td>
-
+              <div ngbDropdown container="body" >
+                   <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>{{cliente.fatherName}}</button>
+                   <div ngbDropdownMenu >
+                     <button ngbDropdownItem *ngFor="let adoptar of clientes"
+                     (click)="ValidarAdopcion(cliente, adoptar, true)">{{adoptar.fullname}}</button>
+                   </div>
+                 </div>
+            </td>
+            <td class="overflow-hidden">
+              <div ngbDropdown container="body" >
+                   <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>{{cliente.motherName}}</button>
+                   <div ngbDropdownMenu >
+                     <button ngbDropdownItem *ngFor="let adoptar of clientes"
+                     (click)="ValidarAdopcion(cliente, adoptar, false)">{{adoptar.fullname}}</button>
+                   </div>
+                 </div>
+            </td>
           </tr>
         </tbody>
     </table>
