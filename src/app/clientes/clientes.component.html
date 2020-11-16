@@ -25,7 +25,16 @@
             <td>{{cliente.birth}}</td>
             <td>{{cliente.fatherName}}</td>
             <td>{{cliente.motherName}}</td>
-            <button [routerLink] = "['/clientes/adoptForm']">Adoptar</button>
+            <td class="overflow-hidden">
+       <div ngbDropdown container="body" >
+         <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Adopt</button>
+         <div ngbDropdownMenu >
+           <button ngbDropdownItem *ngFor="let adoptar of clientes">{{adoptar.fullname}}</button>
+         </div>
+       </div>
+
+     </td>
+
           </tr>
         </tbody>
     </table>
